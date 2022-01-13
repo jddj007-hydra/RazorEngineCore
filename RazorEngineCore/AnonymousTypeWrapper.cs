@@ -40,22 +40,22 @@ namespace RazorEngineCore
             }
 
             bool isEnumerable = typeof(IEnumerable).IsAssignableFrom(type);
-
             if (isEnumerable && !(result is string))
             {
-                result = ((IEnumerable<object>) result)
-                        .Select(e =>
-                        {
-                            if (e.IsAnonymous())
-                            {
-                                return new AnonymousTypeWrapper(e);
-                            }
+                result = result as IEnumerable;
+                //((IEnumerable<object>) result)
+                //        .Select(e =>
+                //        {
+                //            if (e.IsAnonymous())
+                //            {
+                //                return new AnonymousTypeWrapper(e);
+                //            }
 
-                            return e;
-                        })
-                        .ToList();
+                //            return e;
+                //        })
+                //        .ToList();
             }
-        
+
 
             return true;
         }
